@@ -1,0 +1,15 @@
+# Build artifacts
+.build/
+build/
+
+# Local notarization credentials (identifiers only, but keep out of the repo)
+Scripts/notary.env
+
+# macOS
+.DS_Store
+
+# Wrangler local cache
+site/.wrangler/
+
+# Maintainer distribution page (not part of the open-source app)
+site/
