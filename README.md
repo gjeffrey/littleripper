@@ -5,8 +5,6 @@ CD, DVD, or Blu-ray and Little Ripper identifies it, rips it, names and files it
 Plex and Jellyfin, keeps an exact burnable backup, and ejects it — either fully
 automatically or asking you what to do per disc.
 
-![Little Ripper](docs/screenshot.png)
-
 **Platform:** macOS 14+ (Apple silicon) · **Language:** Swift / SwiftUI · **License:** MIT
 
 ---
