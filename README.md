@@ -51,11 +51,13 @@ automatically or asking you what to do per disc.
 
 ## Install (users)
 
-Download the latest notarized build, unzip, and drag it to **Applications**. Audio-CD
-ripping and burning work out of the box — `cd-paranoia`, `flac`, and `metaflac` are
-bundled inside the app. **DVD/Blu-ray ripping additionally requires
-[MakeMKV](https://makemkv.com)** (free during its beta; open it once to enter the key).
-Updates install themselves via Sparkle.
+Download the latest notarized build from the
+[**Releases**](https://github.com/gjeffrey/littleripper/releases/latest) page, unzip,
+and drag it to **Applications**. Audio-CD ripping and burning work out of the box —
+`cd-paranoia`, `flac`, and `metaflac` are bundled inside the app. **DVD/Blu-ray ripping
+additionally requires [MakeMKV](https://makemkv.com)** (free during its beta; open it
+once to enter the key). Updates install themselves via Sparkle, from the GitHub Release
+assets.
 
 ## Build from source
 
@@ -94,21 +96,28 @@ to supply notary credentials; `Scripts/notary.env` is gitignored.
 
 ### Forking / your own distribution
 
-To ship your own build, override the defaults (they're environment variables in
-`build-app.sh`) and generate your own Sparkle keys:
+Updates are distributed through **GitHub Releases**: `make-release.sh` publishes the
+app zip and the Sparkle `appcast.xml` as release assets, and the app's feed
+(`SUFeedURL`) is `https://github.com/<REPO>/releases/latest/download/appcast.xml`,
+which always resolves to the newest release.
+
+To ship your own build, override the defaults (environment variables) and generate your
+own Sparkle keys:
 
 ```bash
 # one-time: a signing keypair (private key → your keychain, public key printed)
 .build/artifacts/sparkle/Sparkle/bin/generate_keys
 
+# build pointed at your fork + key
+REPO=you/littleripper \
 BUNDLE_ID=com.example.littleripper \
-FEED_URL=https://example.com/littleripper/appcast.xml \
+FEED_URL=https://github.com/you/littleripper/releases/latest/download/appcast.xml \
 SU_PUBLIC_ED_KEY="<your public key from generate_keys>" \
   ./Scripts/build-app.sh
-```
 
-The landing page and Cloudflare Worker that distribute the official build aren't part
-of this repository; provide your own hosting and point `FEED_URL` at it.
+# cut a release (needs `gh` auth, a Developer ID cert, and notary credentials)
+REPO=you/littleripper ./Scripts/make-release.sh
+```
 
 ## How it works
 

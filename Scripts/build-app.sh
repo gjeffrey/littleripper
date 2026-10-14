@@ -16,7 +16,7 @@ BUILD_DIR="build"
 APP="$BUILD_DIR/$APP_NAME.app"
 SHORT_VERSION="${SHORT_VERSION:-1.0}"
 BUILD_VERSION="${BUILD_VERSION:-$(date +%Y%m%d%H%M)}"   # Sparkle sparkle:version — sortable timestamp
-FEED_URL="${FEED_URL:-https://gabrieljeffrey.com/littleripper/appcast.xml}"
+FEED_URL="${FEED_URL:-https://github.com/gjeffrey/littleripper/releases/latest/download/appcast.xml}"
 # Sparkle EdDSA *public* key for update verification (not a secret). Replace with your
 # own from `generate_keys` if you distribute your own signed updates.
 SU_PUBLIC_ED_KEY="${SU_PUBLIC_ED_KEY:-TM8yvT30uFU2LjT3tGN72/bwV1tjrtjZjpnqX9Avtyc=}"
